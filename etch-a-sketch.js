@@ -40,11 +40,20 @@ function createGrid(squaresPerSide) {
     }
 }
 
-//Removes first child over and over until there are no cells
+//Removes first child over and over until desired cell limit
 function removeGrid (){
     while (sketchArea.firstChild) {
         sketchArea.removeChild(sketchArea.firstChild);
     }
+}
+
+
+// Function to allow user to change cells
+slider.oninput = function() {
+    let text = `${this.value} X ${this.value} (Resolution)`
+    sliderValue.innerHTML = text;
+    removeGrid();
+    createGrid(this.value);
 }
 
 // Call the function to create the grid
