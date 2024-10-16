@@ -1,13 +1,17 @@
 const GRIDSIDE = 600;  // Grid side length in pixels
-let rows = 16;         // Number of rows
-let cols = 16;         // Number of columns
+let squaresPerSide = 16; //The area of the grid (x * x)
 
 // Select the sketch area container
 const sketchArea = document.querySelector('#sketch-area');
+// Res slider
+const sliderContainter = document.querySelector("#res-slider");
+const slider = document.querySelector("#slider");
+const sliderValue = document.querySelector("#slider-value");
 
+sliderValue.textContent = `${slider.value} x ${slider.value} (Resolution)`; 
 // Set the width and height of the grid container
-sketchArea.style.width = `${GRIDSIDE}px`;
-sketchArea.style.height = `${GRIDSIDE}px`;
+sketchArea.style.width = sketchArea.style.height = `${GRIDSIDE}px`;
+
 
 //Change background colour function
 function changeBackgroundColor() {
@@ -15,15 +19,16 @@ function changeBackgroundColor() {
 }
 
 
-function createGrid() {
+function createGrid(squaresPerSide) {
     // Create grid cells
-    for (let i = 0; i < rows * cols; i++) {
+    const numberOfSquares = (squaresPerSide * squaresPerSide)
+    const widthOrHeight = `${(GRIDSIDE / squaresPerSide) - 2}px`;
+    for (let i = 0; i < numberOfSquares; i++) {
         const gridCell = document.createElement("div");
 
         // Set the width and height for each cell, subtracting 2px for borders
-        gridCell.style.width = `${(GRIDSIDE / cols) - 2}px`;
-        gridCell.style.height = `${(GRIDSIDE / rows) - 2}px`;
-
+        gridCell.style.width = gridCell.style.height = `${(GRIDSIDE / squaresPerSide) - 2}px`;
+     
         // Add the 'cell' class to each grid cell
         gridCell.classList.add("cell");
 
@@ -35,6 +40,12 @@ function createGrid() {
     }
 }
 
+//Removes first child over and over until there are no cells
+function removeGrid (){
+    while (sketchArea.firstChild) {
+        sketchArea.removeChild(sketchArea.firstChild);
+    }
+}
 
 // Call the function to create the grid
-createGrid();
+createGrid(squaresPerSide);
