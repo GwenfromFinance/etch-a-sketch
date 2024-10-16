@@ -1,0 +1,25 @@
+/* Reset margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set background color for body */
+body {
+    background-color: paleturquoise;
+}
+
+/* Style the sketch area container */
+#sketch-area {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 100px auto;
+    background-color: white;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.1); /* Fixed RGBA color for the shadow */
+}
+
+/* Style each individual cell */
+.cell {
+    border: 1px solid whitesmoke;
+    box-sizing: border-box; /* Ensures the border is included in the width/height */
+}
